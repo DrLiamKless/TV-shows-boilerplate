@@ -21,10 +21,10 @@ const getGenrePath = (childNum)=>{
 }
 
 
-jest.setTimeout(30000);
+jest.setTimeout(10000);
 describe(projectName, () => {
   beforeAll(async () => {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({headless: false});
     page = await browser.newPage();
   });
   afterAll(async () => {
@@ -99,7 +99,7 @@ describe(projectName, () => {
             const show =  await page.$eval(pathToShowTitle,show=>show.innerText)
             expect(show).toBe(shows[0].name)
         })
-        test("The single tc show page should include all the requirments",async()=>{
+        test("The single tv show page should include all the requirments",async()=>{
             await page.goto('http://localhost:3000');
             await page.waitForSelector('#search-bar');
             const filterText = "game of thrones"
